@@ -77,11 +77,24 @@ const internalError : ({error : Error}) => ApiResponse
     }
 });
 
+const notFound : ApiResponseSignature
+    = ({data = null, subText = null, error = null}) => ({
+    status : 404,
+    json : {
+        status  : "Failed",
+        message : 'Not found',
+        subText,
+        data,
+        error
+    }
+})
+
 const responseMap = {
     success,
     error,
     missingRequirements,
-    dataRetrieved
+    dataRetrieved,
+    notFound
 };
 
 export type ResponseStatus = keyof typeof responseMap;

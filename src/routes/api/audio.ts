@@ -26,19 +26,30 @@ router.get("/api/audio/:id", (req, res) => {
     if (!fileName || !extension) {
         respond({res, type : "missingRequirements"});
     }
-    res.writeHead(200, {
-        'Content-Type' : "audio/*",
-        'Transfer-Encoding': 'chunked'
-    });
-    const reaStream = filesys.readFile({context, path, fileName, extension});
-    reaStream.pipe(res);
-    reaStream.on("error", error => {
-        log.error({context, module : _module, method, message : "failure reading file", details : error});
-        // respond({res, type : "error", error});
-    });
-    reaStream.on("end", data => {
-        console.log(data);
-    })
+    const filePathName = `${path}/${fileName}.${extension}`;
+    filesys.getFileSize({context, filePathName})
+        .then(({fileSize}) => {
+          if (fileSize > -1) {
+              res.writeHead(200, {
+                  'Content-Type' : "audio/*",
+                  'Transfer-Encoding': 'chunked'
+              });
+              const reaStream = filesys.readFile({context, path, fileName, extension});
+              reaStream.pipe(res);
+              reaStream.on("error", error => {
+                  log.error({context, module : _module, method, message : "failure reading file", details : error});
+                  // respond({res, type : "error", error});
+              });
+              reaStream.on("end", data => {
+                  console.log(data);
+              })
+          } else {
+              respond({type : "notFound", res});
+          }
+        })
+        .catch(error => {
+            respond({res, type : "error", error});
+        })
 });
 
 router.post("/api/audio", (req : express.Request, res : express.Response) => {

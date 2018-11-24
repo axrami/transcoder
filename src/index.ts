@@ -1,6 +1,7 @@
 import * as express from "express";
 import * as logger from 'morgan';
 import * as _ from "lodash";
+import {respond}         from "./routes/helpers/response";
 import {log} from "./logger";
 import { Context, makeContext } from "./contex";
 import * as routes from "./routes";
@@ -25,7 +26,7 @@ _.forEach(routes, route => {
 });
 
 app.use((_req : Express.Request, res) => {
-    res.send(404);
+    respond({type : "notFound", res});
 });
 
 app.listen(port, () => {
