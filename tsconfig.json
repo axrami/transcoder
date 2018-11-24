@@ -1,0 +1,27 @@
+{
+    "compilerOptions": {
+      "allowUnreachableCode"             : false,
+      "allowUnusedLabels"                : false,
+      "forceConsistentCasingInFileNames" : true,
+      "module"                           : "commonjs",
+      "noEmitOnError"                    : true,
+      "noFallthroughCasesInSwitch"       : true,
+      "noImplicitReturns"                : true,
+      "noImplicitUseStrict"              : false,
+      "noUnusedLocals"                   : true,
+      "noUnusedParameters"               : true,
+      "pretty"                           : true,
+      "removeComments"                   : false,
+      "inlineSources"                    : true,
+      "inlineSourceMap"                  : true,
+      "target"                           : "es2017",
+      "rootDir"                          : "src/",
+      "outDir"                           : "build/",
+      "declaration"                      : true,
+      "experimentalDecorators"           : true,
+      "noImplicitAny"                    : false,
+      "strict"                           : true
+    },
+    "include" : [ "src/**/*"]
+  }
+  

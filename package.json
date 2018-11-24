@@ -1,0 +1,28 @@
+{
+  "name": "transcoder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "clean_compiled": "rm -rf ./build",
+    "compile": "tsc --version && tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "aramirez <aramirez@liveperson>",
+  "license": "ISC",
+  "repository": "git@github.com:axrami/transcoder.git",
+  "dependencies": {
+    "express": "^4.16.4",
+    "fluent-ffmpeg": "^2.1.2",
+    "lodash": "^4.17.11",
+    "morgan": "^1.9.1",
+    "reqeust": "^2.81.1",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.16.0",
+    "@types/morgan": "^1.7.35",
+    "@types/lodash": "^4.14.118",
+    "@types/uuid": "^3.4.4"
+  }
+}
