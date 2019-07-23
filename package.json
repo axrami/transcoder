@@ -6,23 +6,26 @@
   "scripts": {
     "clean_compiled": "rm -rf ./build",
     "compile": "tsc --version && tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "echo \"node version\" && node -v && node build/index.js"
   },
-  "author": "aramirez <aramirez@liveperson>",
+  "author": "aram <ramirez.andrew@gmail.com>",
   "license": "ISC",
   "repository": "git@github.com:axrami/transcoder.git",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "express": "^4.16.4",
     "fluent-ffmpeg": "^2.1.2",
     "lodash": "^4.17.11",
     "morgan": "^1.9.1",
     "reqeust": "^2.81.1",
+    "request": "^2.88.0",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
     "@types/express": "^4.16.0",
-    "@types/morgan": "^1.7.35",
     "@types/lodash": "^4.14.118",
+    "@types/morgan": "^1.7.35",
     "@types/uuid": "^3.4.4"
   }
 }

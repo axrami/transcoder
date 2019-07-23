@@ -55,15 +55,16 @@ router.get("/api/audio/:id", (req, res) => {
 router.post("/api/audio", (req : express.Request, res : express.Response) => {
     const method = "post/api/audio";
     const request = req as RequestWithContext;
+    const {to, from} = request.query; // validate
     const {context, body} = request;
     const id = uuid();
-    const convertTo = "mp3";
+    const convertTo = to;
     const data = {
         fileId : id,
         extension : convertTo
     };
     log.debug({context, module : _module, method, details : body});
-    audioTranscocder.transcode({context, input : req, convertTo, extension : "amr", id })
+    audioTranscocder.transcode({context, input : req, convertTo, extension : from, id })
         .then(() => respond({res, type : "success", data, subText : "Audio being transcoded"}))
         .catch((error : Error) => respond({res, type : "error", data, subText : "Failed processing file", error}))
 });

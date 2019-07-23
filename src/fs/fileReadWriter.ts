@@ -3,7 +3,7 @@ import {log}   from "../logger";
 
 const _module = "fileReadWriter";
 
-export class FileReadWriter {
+export class FileReadWriter { // TODO: Reader to allow fs or s3 etc
 
     public getFileSize({context, filePathName}) : Promise<{fileSize : number}> {
         const method = "getFileSize";
@@ -49,11 +49,11 @@ export class FileReadWriter {
                 reject(error);
             });
             input.on("end", data => {
-                log.debug({context, module : _module, method, message: "success to write to file", details : {fileName, data}});
+                log.debug({context, module : _module, method, message: "END: success to write to file", details : {fileName, data}});
                 resolve({fileName});
             });
             input.on("finish", data => {
-                log.debug({context, module : _module, method, message: "success to write to file", details : {fileName, data}});
+                log.debug({context, module : _module, method, message: "FINISH: success to write to file", details : {fileName, data}});
                 resolve({fileName});
             })
         });

@@ -70,7 +70,7 @@ const internalError : ({error : Error}) => ApiResponse
     status : 500,
     json : {
         status  : "Failed",
-        message : 'There is no response details.',
+        message : 'There are no response details.',
         subText : null,
         data    : null,
         error   : error && error.message ? error.message : error
@@ -87,7 +87,7 @@ const notFound : ApiResponseSignature
         data,
         error
     }
-})
+});
 
 const responseMap = {
     success,
