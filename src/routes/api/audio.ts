@@ -2,7 +2,7 @@ import * as express      from "express";
 import * as uuid         from "uuid";
 import {log}             from "../../logger/index";
 import {respond}         from "../helpers/response";
-import {AudioTranscoder} from "../../audio/transcoder";
+import {AudioTranscoder} from "../../transcoders/audioTranscoder";
 import { RequestWithContext } from "../definitions";
 import {FileReadWriter} from "../../fs/fileReadWriter";
 
@@ -11,18 +11,19 @@ const audioTranscocder = new AudioTranscoder();
 const filesys = new FileReadWriter();
 const path = "/Users/aramirez/Development/transcoder/files"; // config
 const router : express.Router = express.Router();
+const AUDIO = "audio";
 
-router.get("/api", (_req, res) => {
-    respond({res, type : "success"});
+router.get(`/${AUDIO}`, (_req, res) => {
+    respond({res, type : "success", subText: "Api healthy"});
 });
 
-router.get("/api/audio/:id", (req, res) => {
+router.get(`/${AUDIO}/:id`, (req, res) => {
     const method = "get/api/auid/:id";
     const request = req as RequestWithContext;
     const {context, params} = request;
     const {id : fileName} = params;
     const {extension} = request.query;
-    log.debug({context, module : _module, method, message : "Received reqeust to get file id:" + params.id});
+    log.debug({context, module : _module, method, message : "Received request to get file id:" + params.id});
     if (!fileName || !extension) {
         respond({res, type : "missingRequirements"});
     }
@@ -52,7 +53,7 @@ router.get("/api/audio/:id", (req, res) => {
         })
 });
 
-router.post("/api/audio", (req : express.Request, res : express.Response) => {
+router.post(`/${AUDIO}`, (req : express.Request, res : express.Response) => {
     const method = "post/api/audio";
     const request = req as RequestWithContext;
     const {to, from} = request.query; // validate

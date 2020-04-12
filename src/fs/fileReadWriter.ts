@@ -1,5 +1,7 @@
 import * as fs from "fs";
 import {log}   from "../logger";
+import {ReadStream} from "fs";
+// import {ReadWriter} from "./ReadWriter";
 
 const _module = "fileReadWriter";
 
@@ -60,7 +62,7 @@ export class FileReadWriter { // TODO: Reader to allow fs or s3 etc
         return result;
     }
 
-    public readFile({context, path, fileName, extension}) {
+    public readFile({context, path, fileName, extension}) : ReadStream {
         const method = "readFile";
         log.debug({context, module : _module, method, message : "begin read file", details : {fileName, extension}});
         return fs.createReadStream(`${path}/${fileName}.${extension}`);

@@ -4,7 +4,7 @@ import { Transcoder }   from "./definitions";
 import {FileReadWriter} from "../fs/fileReadWriter";
 
 const path = "/Users/aramirez/Development/transcoder/files";
-const _module = "transcoder";
+const _module = "audioTranscoder";
 
 export class AudioTranscoder implements Transcoder {
     private readonly _filesys : FileReadWriter;
